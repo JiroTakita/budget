@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<title>サマリー</title>
+</head>
+<body>
+	<div layout:fragment="contents">
+		<h2>マスター</h2>
+		<h3 th:text="${date}"></h3>
+		<h4>バジェット</h4>
+		<table>
+			<tr th:each="obj : ${budgets}">
+				<td th:text="${obj.name}"></td>
+				<td th:text="${obj.date}"></td>
+				<td th:text="${obj.cost}"></td>
+				<td th:text="${obj.memo}"></td>
+		</table>
+		<h4>カテゴリー</h4>
+		<table>
+			<tr th:each="cate : ${categories}">
+				<td th:text="${cate.mainName}"></td>
+				<td th:text="${cate.parentId}"></td>
+				<td th:text="${cate.orderNumber}"></td>
+		</table>
+	</div>
+	<div th:replace="common :: footer"></div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<script type="text/javascript" src="/js/edit.js" th:src="@{/js/edit.js}"></script>
+<title>編集画面</title>
+</head>
+<body>
+	<div layout:fragment="contents">
+		<h2>追加/編集</h2>
+		<div class="row">
+			<div class="col-md-1"></div>
+			<div class="col-md-10">
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>日付</th>
+								<th>名前</th>
+								<th>方法</th>
+								<th>カテゴリ</th>
+								<th>誤差額</th>
+								<th>計算</th>
+								<th>コメント</th>
+							</tr>
+						</thead>
+						<tr>
+							<td>
+								<div class="form-group" id="datepicker-default">
+									<div class="form-inline">
+										<div class="input-group date">
+											<input type="text" class="form-control" value="2018/03/15" size="25">
+											<div class="input-group-append input-group-addon">
+												<span class="input-group-text"><i class="fa fa-calendar"></i></span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</td>
+							<td><input type="text" name="name" class="form-control"></td>
+							<td><input type="text" name="paymentType"
+								class="form-control"></td>
+							<td><input type="text" name="type" class="form-control"></td>
+							<td><select name="suffix"><option value="plus">+</option>
+									<option value="minus">-</option></select><input type="text"
+								name="differencies" class="form-control"></td>
+							<td><input type="checkbox" value="add" checked="checked" /></td>
+							<td><input type="text" name="memo" class="form-control"></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+	</div>
+</body>
+</html>

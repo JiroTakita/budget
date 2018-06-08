@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width" />
+<title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">家計簿</title>
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" media="all" />
+<script type="text/javascript" src="/js/jquery-3.3.1.min.js"
+	th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"
+	th:src="@{/js/bootstrap.min.js}"></script>
+<!-- datepicker -->
+<script type="text/javascript" src="/js/bootstrap-datepicker.min.js"
+	th:src="@{/js/bootstrap-datepicker.min.js}"></script>
+<link rel="stylesheet" type="text/css" href="/css/bootstrap-datepicker.css"
+	th:href="@{/css/bootstrap-datepicker.css}" media="all"/>
+	
+<link rel="stylesheet" type="text/css" href="/css/site.css"
+	th:href="@{/css/site.css}" media="all" />
+<link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+</head>
+<body>
+	<nav class="navbar navbar-expand-md navbar-light bg-faded">
+		<a class="navbar-brand" href="/summary/"><i
+			class="fa fa-home fa-lg" aria-hidden="true"></i></a>
+		<button class="navbar-toggler navbar-toggler-right" type="button"
+			data-toggle="collapse" data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav">
+				<li  th:classappend="${#httpServletRequest.getRequestURI().startsWith('/summary') ? 'active':''}" class="nav-item"><a th:href="@{/summary}" class="nav-link"><i class="fas fa-chart-pie" aria-hidden="true">&nbsp;</i> サマリー<span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/edit}"><i class="fa fa-plus"
+						aria-hidden="true">&nbsp;</i>追加/編集</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="javascript:void(0)"><i class="fa fa-info-circle">&nbsp;</i>お役立ち情報</a></li>
+				<li th:classappend="${#httpServletRequest.getRequestURI().startsWith('/master') ? 'active':''}" class="nav-item" sec:authorize="hasRole('ADMIN')"><a
+					th:href="@{/master}" class="nav-link"><i class="fas fa-database">&nbsp;</i>マスター</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="javascript:void(0)"><i class="fa fa-cog"
+						aria-hidden="true">&nbsp;</i>設定</a></li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="javascript:void(0)"
+					id="navbarDropdownMenuLink" data-toggle="dropdown"
+					aria-haspopup="true" aria-expanded="false">Dropdown</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item" href="javascript:void(0)">Action</a> <a
+							class="dropdown-item" href="javascript:void(0)">Another
+							action</a> <a class="dropdown-item" href="javascript:void(0)">Something
+							else here</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="javascript:void(0)">Separated
+							link</a>
+					</div></li>
+			</ul>
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item"><a class="nav-link"><i class="fa fa-user-circle" aria-hidden="true"></i> <span class="font-weight-bold" th:text="${#authentication.principal.name}"></span></a></li>
+				<li class="nav-item">
+					<form id="logoutForm" th:action="@{/logout}" method="POST">
+						<input type="hidden" th:name="${_csrf.parameterName}"
+							th:value="${_csrf.token}" />
+						<button type="submit" class="btn btn-default"><i class="fas fa-sign-out-alt">&nbsp;</i>ログアウト</button>
+					</form>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<div class="contents" layout:fragment="contents"></div>
+	<footer class="footer">
+		<div class="container">
+			<p class="text-muted">Place sticky footer content here.</p>
+		</div>
+	</footer>
+</body>
+</html>

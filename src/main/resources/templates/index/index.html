@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<meta charset="UTF-8" />
+	<title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">家計簿 - ログイン</title>
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" media="all" />
+	<link rel="stylesheet" type="text/css" href="/css/site.css" th:href="@{/css/site.css}" media="all" />
+	
+
+	<script type="text/javascript" src="/js/jquery-3.3.1.min.js" th:src="@{/js/jquery-1.12.4.min.js}"></script>
+	<script type="text/javascript" src="/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+</head>
+<body>
+	<div class="contents">
+		<div class="wrapper">
+			<form class="form-signin" method="POST" action="/login"
+				th:action="@{/login}" th:object="${indexForm}">
+				<h4 class="form-signin-heading">Welcome Back! Please Sign In</h4>
+				<hr class="colorgraph"><br>
+				<div th:text="${errorMessage}?: ''"
+					class="col-sm-offset-2 text-danger"></div>
+
+					<p th:if="${#fields.hasErrors('*{userId}')}" th:errors="*{userId}"
+						class="col-sm-offset-2 text-danger"></p>
+
+						<input type="text" class="form-control log-in" id="user-id"
+							th:field="*{userId}" placeholder="UserId" />
+
+					<p th:if="${#fields.hasErrors('*{password}')}"
+						th:errors="*{password}" class="col-sm-offset-2 text-danger"></p>
+
+						<input type="password" class="form-control log-in" id="password"
+							th:field="*{password}" placeholder="Password" />
+
+					<button type="submit"
+						class="btn btn-primary btn-block" name="login"
+						value="Login" >Login</button> 
+					<button type="reset"
+						class="btn btn-link btn-block" name="clear"
+						value="クリア" >Reset</button>
+
+			</form>
+		</div>
+	</div>
+</body>
+</html>

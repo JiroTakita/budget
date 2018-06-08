@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<title>メニュー</title>
+</head>
+<body>
+	<div layout:fragment="contents">
+		<h2>メニュー</h2>
+		<table>
+			<tr th:each="obj : ${budgets}">
+				<td th:text="${obj.name}"></td>
+				<td th:text="${obj.date}"></td>
+				<td th:text="${obj.cost}"></td>
+				<td th:text="${obj.memo}"></td>
+		</table>
+		<!-- p th:text="${#Authentication.user}"></p-->
+		<form id="logoutForm" th:action="@{/logout}" method="POST">
+			<input type="hidden" th:name="${_csrf.parameterName}"
+				th:value="${_csrf.token}" />
+				<button type="submit" class="btn btn-link">ログアウト</button>
+		</form>
+	</div>
+	<div th:replace="common :: footer"></div>
+
+</body>
+</html>
