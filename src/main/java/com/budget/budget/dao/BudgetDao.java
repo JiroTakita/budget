@@ -17,7 +17,7 @@ public interface BudgetDao {
 	
 	@Select
 	List<Budget> selectAll();
-
+	
 	@Select
 	List<Budget> selectMonth(Date start, Date end ,boolean valid);
 	
